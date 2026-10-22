@@ -1,0 +1,69 @@
+{
+  "case_id": "1de164a1-3ea0-50e3-a0d2-a65293b846e8",
+  "events": [
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "raw_ecg",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "88a09df2-435a-5849-9b8f-6975c5df687d",
+      "tx_id": "MOCK-88a09df2-435a-5849-9b8f-6975c5df687d"
+    },
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "raw_report",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "4fc39f53-5515-553e-9223-e427c10e91ae",
+      "tx_id": "MOCK-4fc39f53-5515-553e-9223-e427c10e91ae"
+    },
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "processed",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "ce8ef0cf-026b-517a-a003-681f4f28b006",
+      "tx_id": "MOCK-ce8ef0cf-026b-517a-a003-681f4f28b006"
+    },
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "features",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "0b2fee91-b49b-540d-8121-f0b7c42798d1",
+      "tx_id": "MOCK-0b2fee91-b49b-540d-8121-f0b7c42798d1"
+    },
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "prediction",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "cf30da3c-3509-5aec-8a06-e7f9bb63af7c",
+      "tx_id": "MOCK-cf30da3c-3509-5aec-8a06-e7f9bb63af7c"
+    },
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "validation",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "3eb182eb-56ac-5616-a15c-a5dd84f360e1",
+      "tx_id": "MOCK-3eb182eb-56ac-5616-a15c-a5dd84f360e1"
+    },
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "explanation",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "9015931c-908f-530a-bd22-4376e6305faa",
+      "tx_id": "MOCK-9015931c-908f-530a-bd22-4376e6305faa"
+    },
+    {
+      "timestamp": "2026-10-22T09:00:00Z",
+      "stage": "final",
+      "status": "MOCK",
+      "details": "Événement de démonstration simulé.",
+      "artifact_id": "fdffd1ea-b51c-5db8-9147-9225f5bcf1ae",
+      "tx_id": "MOCK-fdffd1ea-b51c-5db8-9147-9225f5bcf1ae"
+    }
+  ]
+}
