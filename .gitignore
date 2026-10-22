@@ -1,0 +1,66 @@
+# Local Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+
+# Frontend dependencies and generated output
+node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# Local-only audits, runtime data and private medical inputs
+.qa/
+/data/
+/uploads/
+/private/
+/patient_data/
+/datasets/
+*.dcm
+*.dicom
+*.edf
+*.bdf
+# samples/ contains reviewed synthetic fixtures and is intentionally tracked.
+
+# Credentials and machine-local configuration (never commit real values)
+.env
+.env.*
+!.env.example
+!.env.sample
+.aws/
+.ssh/
+.codex/
+.agents/
+secrets/
+.secrets/
+credentials.json
+credentials.*.json
+secrets.json
+secrets.*.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+
+# Editor / operating-system state
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
