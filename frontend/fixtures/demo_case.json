@@ -1,0 +1,83 @@
+{
+  "case_id": "1de164a1-3ea0-50e3-a0d2-a65293b846e8",
+  "prediction": {
+    "label": "demo_class_A",
+    "confidence": 0.91,
+    "model_name": "mock_fixture_no_model",
+    "model_version": "v1"
+  },
+  "validation": {
+    "status": "ACCEPTED",
+    "reasons": [
+      "Cohérence texte/ECG non évaluée automatiquement"
+    ]
+  },
+  "explanation": "Réponse MOCK préétablie pour tester l’interface. Aucune inférence IA ni évaluation clinique n’a été exécutée.",
+  "artifacts": [
+    {
+      "artifact_id": "88a09df2-435a-5849-9b8f-6975c5df687d",
+      "type": "raw_ecg",
+      "sha256": "4b6a4c3d3d6b86f39bf87b23c08663f8199e9782736d04340141de40b48a54b9",
+      "parent_id": null,
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/88a09df2-435a-5849-9b8f-6975c5df687d.bin",
+      "tx_id": "MOCK-88a09df2-435a-5849-9b8f-6975c5df687d"
+    },
+    {
+      "artifact_id": "4fc39f53-5515-553e-9223-e427c10e91ae",
+      "type": "raw_report",
+      "sha256": "d3b04b4cc2ed188c2a9d51f35d1ec63798c963b6463dc409c70a45ca12bb7ddc",
+      "parent_id": "88a09df2-435a-5849-9b8f-6975c5df687d",
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/4fc39f53-5515-553e-9223-e427c10e91ae.bin",
+      "tx_id": "MOCK-4fc39f53-5515-553e-9223-e427c10e91ae"
+    },
+    {
+      "artifact_id": "ce8ef0cf-026b-517a-a003-681f4f28b006",
+      "type": "processed",
+      "sha256": "3c9cff0223f901cc4c0d4b7397d0a582af7ed6c7fb7eb2c41e8c52301a6f1f76",
+      "parent_id": "4fc39f53-5515-553e-9223-e427c10e91ae",
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/ce8ef0cf-026b-517a-a003-681f4f28b006.bin",
+      "tx_id": "MOCK-ce8ef0cf-026b-517a-a003-681f4f28b006"
+    },
+    {
+      "artifact_id": "0b2fee91-b49b-540d-8121-f0b7c42798d1",
+      "type": "features",
+      "sha256": "468bf1d58fc69fb44056d012702965bef5a0a3e497d1f938ab88a19008b8eb55",
+      "parent_id": "ce8ef0cf-026b-517a-a003-681f4f28b006",
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/0b2fee91-b49b-540d-8121-f0b7c42798d1.bin",
+      "tx_id": "MOCK-0b2fee91-b49b-540d-8121-f0b7c42798d1"
+    },
+    {
+      "artifact_id": "cf30da3c-3509-5aec-8a06-e7f9bb63af7c",
+      "type": "prediction",
+      "sha256": "8b0630c0c12435a9e193061e785c8cbf9f0b1eb0f0e62eb945141d0700e318a5",
+      "parent_id": "0b2fee91-b49b-540d-8121-f0b7c42798d1",
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/cf30da3c-3509-5aec-8a06-e7f9bb63af7c.bin",
+      "tx_id": "MOCK-cf30da3c-3509-5aec-8a06-e7f9bb63af7c"
+    },
+    {
+      "artifact_id": "3eb182eb-56ac-5616-a15c-a5dd84f360e1",
+      "type": "validation",
+      "sha256": "c3fd8d8b29ccc8ca16c929ca303f91a526f590313c6b3a2ce1a2f3336ca3aa32",
+      "parent_id": "cf30da3c-3509-5aec-8a06-e7f9bb63af7c",
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/3eb182eb-56ac-5616-a15c-a5dd84f360e1.bin",
+      "tx_id": "MOCK-3eb182eb-56ac-5616-a15c-a5dd84f360e1"
+    },
+    {
+      "artifact_id": "9015931c-908f-530a-bd22-4376e6305faa",
+      "type": "explanation",
+      "sha256": "78c9efaf49f0c9340fa54735d616a39e2f8b593194f67c571f0b12e7ce4c5396",
+      "parent_id": "3eb182eb-56ac-5616-a15c-a5dd84f360e1",
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/9015931c-908f-530a-bd22-4376e6305faa.bin",
+      "tx_id": "MOCK-9015931c-908f-530a-bd22-4376e6305faa"
+    },
+    {
+      "artifact_id": "fdffd1ea-b51c-5db8-9147-9225f5bcf1ae",
+      "type": "final",
+      "sha256": "517f65ca51d0b27adcc142d85acc9d132060a9eb6ccbb8ca30812bc7bf2cde8d",
+      "parent_id": "9015931c-908f-530a-bd22-4376e6305faa",
+      "storage_ref": "data/cases/1de164a1-3ea0-50e3-a0d2-a65293b846e8/fdffd1ea-b51c-5db8-9147-9225f5bcf1ae.bin",
+      "tx_id": "MOCK-fdffd1ea-b51c-5db8-9147-9225f5bcf1ae"
+    }
+  ],
+  "ledger_mode": "MOCK"
+}

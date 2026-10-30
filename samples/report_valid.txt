@@ -1,0 +1,6 @@
+DONNÉES ENTIÈREMENT SYNTHÉTIQUES — AUCUNE IDENTITÉ RÉELLE
+Nom: Exemple-Démo
+Prénom: Patiente-Fictive
+Patient ID: SYNTHETIC-001
+Observation: signal généré pour une démonstration universitaire.
+Contexte: aucune interprétation clinique ni diagnostic attendu.

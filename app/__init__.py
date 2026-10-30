@@ -1,1 +1,1 @@
-"""Shared package for the medical agentic Fabric university prototype."""
+"""Shared application package. This delivery contains Mezghani's modules only."""

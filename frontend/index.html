@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MedTrace, prototype universitaire d'analyse ECG et de traçabilité. Données synthétiques uniquement.">
+  <title>MedTrace — Analyse médicale traçable</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#analysis" aria-label="MedTrace accueil"><span class="brand-mark">⌁</span><span>MedTrace<span class="brand-sub">INTELLIGENCE & TRAÇABILITÉ</span></span></a>
+    <div class="workspace-label">ESPACE DE TRAVAIL</div>
+    <nav aria-label="Navigation principale">
+      <a class="nav-link active" href="#analysis"><span>▦</span> Analyse ECG <span class="nav-dot"></span></a>
+      <a class="nav-link" href="#evidence"><span>◇</span> Preuves & intégrité</a>
+      <a class="nav-link" href="#history"><span>◷</span> Historique <span id="case-count" class="nav-count">0</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="network-icon">⌘</div><strong>Une analyse. Une trace.</strong><p>Chaque étape reliée à son artefact et à sa preuve d’intégrité.</p><span class="side-tag">PROJET UNIVERSITAIRE · V1</span><div class="author"><span class="avatar">MM</span><span>Mariem Mezghani<small>Interface & validation</small></span></div></div>
+  </aside>
+
+  <div class="shell">
+    <header class="topbar"><div><span class="breadcrumb">Espace de travail</span><span class="slash">/</span><strong>Analyse médicale</strong></div><div class="top-status"><span class="status-dot"></span><span id="top-mode">Environnement de démonstration</span><span class="version">V1.0</span></div></header>
+    <main>
+      <div class="safety-banner"><span aria-hidden="true">ⓘ</span><span><strong>Prototype pédagogique, non diagnostic.</strong> Utiliser uniquement des données synthétiques. Toute décision médicale nécessite une évaluation humaine.</span></div>
+
+      <section id="analysis" class="analysis-section">
+        <div class="page-heading"><div><div class="eyebrow">ANALYSE SÉCURISÉE & TRAÇABLE</div><h1>Comprendre le signal.<br><span>Suivre chaque preuve.</span></h1><p>De l’ECG au résultat validé, une chaîne d’analyse transparente.</p></div><div class="project-note"><span class="tiny-label">PROJET UNIVERSITAIRE</span><p>Système agentique d’analyse médicale<br>par IA et Hyperledger Fabric</p><span class="project-line"></span><small>Mezghani · Mrabet · Abidi</small></div></div>
+
+        <div class="connection-panel"><div class="connection-intro"><span class="connection-led"></span><div><strong>Connexion des services</strong><small id="connection-description">Réponses simulées dans ce navigateur</small></div></div><div class="connection-controls"><label for="adapter-mode" class="sr-only">Mode de connexion</label><select id="adapter-mode"><option value="mock">MOCK · Démonstration</option><option value="api">API · Backend réel</option></select><label for="api-url" class="sr-only">URL du backend</label><input id="api-url" type="url" value="http://127.0.0.1:8000" aria-label="URL du backend" hidden><button id="connect-button" class="button button-small" hidden>Connecter</button></div></div>
+        <p class="mock-notice" id="mock-notice">MOCK : preuve locale simulée, intégration Fabric non démontrée. Aucune prédiction médicale n’est calculée.</p>
+
+        <p id="artifact-completeness" class="mock-notice" aria-live="polite">AUCUN DOSSIER</p>
+        <div class="analysis-grid">
+          <section class="card upload-card" aria-labelledby="upload-title"><div class="card-title"><span class="step-number">01</span><div><h2 id="upload-title">Nouveau dossier</h2><p>Deux fichiers pour démarrer l’analyse</p></div></div>
+            <form id="analysis-form" novalidate>
+              <label class="upload-zone" for="ecg-file"><span class="file-icon">⌁</span><strong>Signal électrocardiographique</strong><span id="ecg-name">Choisir un fichier ECG</span><small>CSV · Colonne « signal » · 2 Mio maximum</small><input id="ecg-file" name="ecg" type="file" accept=".csv,text/csv" required></label>
+              <label class="upload-zone report-zone" for="report-file"><span class="file-icon report-icon">▤</span><strong>Rapport médical synthétique</strong><span id="report-name">Choisir un rapport</span><small>TXT · UTF-8 · 64 Kio maximum</small><input id="report-file" name="report" type="file" accept=".txt,text/plain" required></label>
+              <div class="privacy-note"><span>♧</span><p>Masquage simple des champs Nom, Prénom et Patient ID par le module de contrôle. Aucun anonymat du texte libre garanti.</p></div>
+              <div id="scenario-row" class="scenario-row"><label for="mock-scenario">Scénario de démonstration</label><select id="mock-scenario"><option value="accepted">Confiance élevée · ACCEPTED</option><option value="low-confidence">Confiance faible · REVIEW_REQUIRED</option><option value="poor-quality">Qualité insuffisante · REVIEW_REQUIRED</option><option value="missing-artifact">Artefact manquant · REJECTED</option><option value="integrity-failure">Intégrité compromise · REJECTED</option></select></div>
+              <button type="submit" id="analyze-button" class="button button-primary"><span>Analyser le dossier</span><span aria-hidden="true">↗</span></button>
+              <button type="button" id="sample-button" class="sample-button">Charger les fichiers de démonstration <span>↓</span></button>
+            </form>
+          </section>
+
+          <div class="result-column">
+            <section class="card ecg-card" aria-labelledby="ecg-title"><div class="section-head"><div><span class="tiny-label">APERÇU DU FICHIER LOCAL</span><h2 id="ecg-title">Signal ECG</h2></div><span class="subtle-badge" id="signal-count">Aucun fichier</span></div><div class="ecg-chart"><svg id="ecg-svg" viewBox="0 0 800 170" role="img" aria-label="Aperçu des valeurs ECG, sans interprétation clinique"><defs><pattern id="grid-small" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e7efed" stroke-width="0.7"/></pattern><pattern id="grid-large" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#grid-small)"/><path d="M 100 0 L 0 0 0 100" fill="none" stroke="#d4e3df" stroke-width="1"/></pattern></defs><rect width="800" height="170" fill="url(#grid-large)"/><polyline id="signal-line" points="0,85 800,85" fill="none" stroke="#118b78" stroke-width="2" stroke-linejoin="round"/></svg><div class="chart-axis"><span>Amplitude · unités du fichier</span><span>Index des échantillons →</span></div></div><p id="ecg-caption" class="chart-caption">Importez un ECG synthétique pour visualiser le signal brut.</p></section>
+
+            <section class="card result-card" aria-labelledby="result-title"><div class="section-head"><div><span class="tiny-label">RÉSULTAT DE L’ANALYSE</span><h2 id="result-title">Prédiction & validation</h2></div><span id="validation-badge" class="badge neutral">EN ATTENTE</span></div>
+              <div id="result-empty" class="empty-result"><span>◇</span><h3>Le prochain résultat commence ici.</h3><p>Chargez vos fichiers ou explorez un scénario de démonstration.</p></div>
+              <div id="result-content" hidden><div class="prediction-row"><div><span class="field-label">CLASSE PRÉDITE</span><h3 id="prediction-label"></h3><span id="model-name" class="muted"></span></div><div class="confidence-value"><strong id="confidence-value"></strong><small>CONFIANCE</small></div></div><div class="confidence-track"><div id="confidence-fill"></div><span title="Seuil de revue : 75 %"></span></div><div class="confidence-legend"><span>0 %</span><span>Seuil de revue : 75 %</span><span>100 %</span></div><div class="validation-detail"><strong id="validation-title"></strong><ul id="validation-reasons"></ul></div><p id="explanation" class="explanation"></p><div class="case-meta"><div><span>DOSSIER</span><code id="case-id"></code></div><span id="ledger-badge" class="badge neutral"></span></div></div>
+            </section>
+          </div>
+        </div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite" tabindex="-1" hidden></div>
+      </section>
+
+      <section id="evidence" class="card evidence-section" aria-labelledby="evidence-title"><div class="section-head"><div><span class="tiny-label">CHAÎNE DE TRAÇABILITÉ</span><h2 id="evidence-title">Les preuves, étape par étape.</h2><p>Empreintes SHA-256, liens de parenté et références de transaction.</p></div><div class="evidence-actions"><span id="integrity-badge" class="badge neutral">NON VÉRIFIÉ</span><button id="verify-button" class="button button-outline" disabled>◇ Vérifier l’intégrité</button></div></div><div class="evidence-summary"><span><i class="legend-dot"></i> <strong id="artifact-count">0</strong> artefacts</span><span>Fichiers médicaux stockés hors chaîne par le backend</span></div><div class="table-scroll"><table><caption class="sr-only">Artefacts et résultats des vérifications d’intégrité</caption><thead><tr><th>ÉTAPE / ARTEFACT</th><th>EMPREINTE SHA-256 & PARENT</th><th>TRANSACTION & STOCKAGE</th><th>INTÉGRITÉ</th></tr></thead><tbody id="artifact-rows"><tr><td colspan="4" class="table-empty">Les preuves apparaîtront après la première analyse.</td></tr></tbody></table></div><div id="mock-tamper-row" class="tamper-row" hidden><p id="verify-description">La vérification MOCK renvoie une réponse préétablie. Aucun fichier ni registre réel n’est consulté.</p><button id="tamper-button" class="text-button">Simuler une modification</button></div></section>
+
+      <section id="history" class="history-section" aria-labelledby="history-title"><div class="section-head"><div><span class="tiny-label">VUE D’ENSEMBLE</span><h2 id="history-title">Historique de traitement</h2><p>Les dossiers ouverts et les événements retournés par le service.</p></div><span class="session-label">SESSION LOCALE · MÉMOIRE UNIQUEMENT</span></div><div class="history-grid"><section class="card"><h3 class="history-card-title">Dossiers de cette session</h3><div id="case-list" class="case-list"><p class="empty-text">Aucun dossier ouvert pour le moment.</p></div></section><section class="card"><h3 class="history-card-title">Journal du dossier actif</h3><ol id="timeline" class="timeline"><li class="empty-text">Sélectionnez un dossier pour consulter les étapes.</li></ol><button id="refresh-history" class="text-button refresh-button" disabled>Actualiser l’historique ↻</button></section></div></section>
+
+      <footer><span class="footer-brand">MedTrace <span>/</span> Prototype universitaire</span><span>Interface & validation · Mariem Mezghani</span></footer>
+    </main>
+  </div>
+</body>
+</html>
