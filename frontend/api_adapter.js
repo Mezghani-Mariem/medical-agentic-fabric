@@ -1,6 +1,6 @@
 /** Real REST adapter only. Never manufactures a prediction or ledger receipt. */
 export class ApiAdapter {
-  constructor(baseUrl, { fetcher = globalThis.fetch, timeout = 30000 } = {}) {
+  constructor(baseUrl, { fetcher = (...args) => globalThis.fetch(...args), timeout = 30000 } = {}) {
     const url = new URL(baseUrl);
     if (!["http:", "https:"].includes(url.protocol) || url.username || url.password || url.search || url.hash) {
       throw new Error("URL API invalide : utiliser HTTP(S), sans identifiants, paramètres ni fragment.");

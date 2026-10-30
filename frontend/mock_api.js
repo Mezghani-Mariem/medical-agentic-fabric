@@ -7,7 +7,7 @@ const ARTIFACT_LABELS = {
 const clone = value => structuredClone(value);
 
 export class MockAdapter {
-  constructor({ fetcher = globalThis.fetch, uuid = () => crypto.randomUUID() } = {}) {
+  constructor({ fetcher = (...args) => globalThis.fetch(...args), uuid = () => crypto.randomUUID() } = {}) {
     this.mode = "mock";
     this.fetcher = fetcher;
     this.uuid = uuid;
