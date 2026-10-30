@@ -1,0 +1,13 @@
+{
+  "data": "mitbih",
+  "hidden": [
+    32,
+    16
+  ],
+  "seed": 42,
+  "float_accuracy": 0.994,
+  "labels": [
+    "normal",
+    "abnormal"
+  ]
+}
