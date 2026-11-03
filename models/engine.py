@@ -28,6 +28,18 @@ DEVICES = ("arm", "fpga")
 FPGA_PE = 16        # nombre de MAC en parallèle
 FPGA_MHZ = 100.0    # fréquence d'horloge en MHz
 
+# Latences mesurees par Vitis HLS (models/fpga/hls_latency.json).
+# Repli sur l'estimation MACs/PE si le fichier est absent ou invalide.
+def _load_hls_cycles():
+    try:
+        d = json.loads((MODELS_DIR / "fpga" / "hls_latency.json").read_text(encoding="utf-8"))
+        return {k.lower(): int(v) for k, v in d["cycles"].items()}, float(d.get("clock_mhz", FPGA_MHZ))
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return {}, FPGA_MHZ
+
+
+HLS_CYCLES, HLS_MHZ = _load_hls_cycles()
+
 
 # --------------------------------------------------------------------------
 # Segment d'entrée (utilisé à l'entraînement ET à l'inférence : même fonction)
@@ -200,6 +212,9 @@ class PartitionedModel:
         for part, dev in zip(self.partitions, self.plan):
             ex = self.executors[dev]
             x, host_ms, est_ms = ex.run(part["layers"], x)
+            key = part["name"].lower()
+            if est_ms is not None and key in HLS_CYCLES:
+                est_ms = HLS_CYCLES[key] / (HLS_MHZ * 1e3)
             trace.append({
                 "partition": part["name"],
                 "device": getattr(ex, "label", ex.name),
