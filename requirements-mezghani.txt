@@ -1,0 +1,2 @@
+# Development only. The Python modules and static dashboard have no runtime dependencies.
+pytest>=8,<10

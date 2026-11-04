@@ -1,0 +1,6 @@
+{
+  "source": "Vitis HLS 2026.1, csynth, xc7z020clg400-1, horloge 10 ns, variante parallele 16 MAC (models/fpga/mlp_hls_par.cpp)",
+  "clock_mhz": 100,
+  "cycles": { "p1": 111, "p2": 63, "p3": 30 },
+  "cycles_sequential": { "p1": 2433, "p2": 705, "p3": 49 }
+}
