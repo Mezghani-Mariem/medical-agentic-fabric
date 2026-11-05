@@ -32,7 +32,7 @@ h1 = run_layers(model.partitions[0]["layers"], x)
 h2 = run_layers(model.partitions[1]["layers"], h1)
 z = run_layers(model.partitions[2]["layers"], h2)
 
-logits = z[0].astype(np.float64) * model.logit_scale
+logits = z[0].astype(np.float64) * model.logit_scale / model.temperature
 p = np.exp(logits - logits.max())
 p /= p.sum()
 k = int(np.argmax(p))
