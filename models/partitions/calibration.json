@@ -1,0 +1,7 @@
+{
+  "temperature": 3.42,
+  "method": "temperature scaling (minimisation de la log-vraisemblance negative) sur les predictions leave-one-record-out, 9 enregistrements MIT-BIH (models/evaluate_by_record.py)",
+  "ece_before": 0.0652,
+  "ece_after": 0.0143,
+  "note": "Appliquee aux logits : p = softmax(logits / T). Les poids et les logits entiers ne changent pas."
+}
