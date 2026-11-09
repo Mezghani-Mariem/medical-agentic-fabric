@@ -13,6 +13,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+from app.explain import build_explanation
 from app.hashing import canonical_json, sha256_bytes as sha256
 from app.input_checks import check_inputs
 from app.predict import predict_with_trace
@@ -129,13 +130,9 @@ def run_case(ecg_bytes: bytes, report_bytes: bytes) -> dict:
     art_val = _store(case_id, "validation", _canon(validation), art_pred["artifact_id"])
 
     # 5. explication et résultat final
-    explanation = (
-        f"Classe indicative du prototype : {prediction['label']} "
-        f"(confiance {prediction['confidence']:.0%}). Statut de validation : {validation['status']}. "
-        f"Inférence : {_device_summary(trace)}. Prototype pédagogique, non diagnostique."
-    )
+    explanation, explainer = build_explanation(prediction, validation, _device_summary(trace))
     art_expl = _store(case_id, "explanation",
-                      _canon({"case_id": case_id, "text": explanation}),
+                      _canon({"case_id": case_id, "text": explanation, "source": explainer}),
                       art_val["artifact_id"])
     final_doc = {
         "case_id": case_id, "label": prediction["label"], "confidence": prediction["confidence"],
