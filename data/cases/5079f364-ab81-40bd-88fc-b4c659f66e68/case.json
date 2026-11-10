@@ -1,0 +1,86 @@
+{
+  "case_id": "5079f364-ab81-40bd-88fc-b4c659f66e68",
+  "prediction": {
+    "label": "abnormal",
+    "confidence": 0.9705,
+    "model_name": "ecg_mlp_int8_partitioned",
+    "model_version": "v2-int8-p3-ebe0997a-cal"
+  },
+  "validation": {
+    "status": "REJECTED",
+    "reasons": [
+      "Intégrité compromise ou non confirmée.",
+      "Qualité du signal insuffisante ou non confirmée : revue humaine requise.",
+      "Qualité : Signal trop court : 15 points (minimum 30)",
+      "Cohérence texte/ECG non évaluée automatiquement"
+    ]
+  },
+  "explanation": "Classe indicative du prototype : abnormal (confiance 97%). Statut de validation : REJECTED. Inférence : modèle int8 en 3 partitions (P1:fpga-sim, P2:fpga-sim, P3:arm) ; FPGA simulé, pas de carte. Prototype pédagogique, non diagnostique.",
+  "artifacts": [
+    {
+      "artifact_id": "c2aeac6e-8705-4eb5-a76f-bfca6fbcc3d8",
+      "type": "raw_ecg",
+      "sha256": "895e902702c76acf692926a700f041627c8a9666822d56d1269490047ff15ea0",
+      "parent_id": null,
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/c2aeac6e-8705-4eb5-a76f-bfca6fbcc3d8.bin",
+      "tx_id": "FABRIC-TX-c2aeac6e"
+    },
+    {
+      "artifact_id": "55f81411-adab-48be-8568-70c764d3fc6f",
+      "type": "raw_report",
+      "sha256": "ee85ddd5cfaae7cd13a8f39b6f13eddb820fa63716115afe4b7b865221f4d982",
+      "parent_id": "c2aeac6e-8705-4eb5-a76f-bfca6fbcc3d8",
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/55f81411-adab-48be-8568-70c764d3fc6f.bin",
+      "tx_id": "FABRIC-TX-55f81411"
+    },
+    {
+      "artifact_id": "be4b35e4-c93a-4765-a022-dfd7a044bf52",
+      "type": "processed",
+      "sha256": "8270b1485892c09003dc892af88fbeff046f95de8a9e215ddef2fac30c310d6e",
+      "parent_id": "55f81411-adab-48be-8568-70c764d3fc6f",
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/be4b35e4-c93a-4765-a022-dfd7a044bf52.bin",
+      "tx_id": "FABRIC-TX-be4b35e4"
+    },
+    {
+      "artifact_id": "b863c1ea-6643-47ba-9611-a8c5ff556d81",
+      "type": "features",
+      "sha256": "f0fc7644a4a2105913d95d3ffdc11ec3d23b773f31331543519fd5b806ca2d52",
+      "parent_id": "be4b35e4-c93a-4765-a022-dfd7a044bf52",
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/b863c1ea-6643-47ba-9611-a8c5ff556d81.bin",
+      "tx_id": "FABRIC-TX-b863c1ea"
+    },
+    {
+      "artifact_id": "1ea52ffe-560a-44c8-8771-96f10a315478",
+      "type": "prediction",
+      "sha256": "d5d1164d41d40cdc31a0b2696097af50953fd0e73f48d4ecea2f206848817c5c",
+      "parent_id": "b863c1ea-6643-47ba-9611-a8c5ff556d81",
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/1ea52ffe-560a-44c8-8771-96f10a315478.bin",
+      "tx_id": "FABRIC-TX-1ea52ffe"
+    },
+    {
+      "artifact_id": "6ae7168e-b8fd-4d46-b5cf-3973b0790afb",
+      "type": "validation",
+      "sha256": "55260ee3646826faf61ef44ef99c4c922842a9892f791ead7dbff779eb103ff9",
+      "parent_id": "1ea52ffe-560a-44c8-8771-96f10a315478",
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/6ae7168e-b8fd-4d46-b5cf-3973b0790afb.bin",
+      "tx_id": "FABRIC-TX-6ae7168e"
+    },
+    {
+      "artifact_id": "efc9eb19-a8d3-4c73-abe5-9bb9b2a097ee",
+      "type": "explanation",
+      "sha256": "806e039550793bb3efd4f2b254e92e5692abcc78da4f98806fefbd08e0c94088",
+      "parent_id": "6ae7168e-b8fd-4d46-b5cf-3973b0790afb",
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/efc9eb19-a8d3-4c73-abe5-9bb9b2a097ee.bin",
+      "tx_id": "FABRIC-TX-efc9eb19"
+    },
+    {
+      "artifact_id": "f49d3282-d010-4b39-a4e5-bb3a5ab1f61b",
+      "type": "final",
+      "sha256": "a510280655e61babdb15bf49f2aa81e9b4e7462d4006fede7679d16146474015",
+      "parent_id": "efc9eb19-a8d3-4c73-abe5-9bb9b2a097ee",
+      "storage_ref": "data/cases/5079f364-ab81-40bd-88fc-b4c659f66e68/f49d3282-d010-4b39-a4e5-bb3a5ab1f61b.bin",
+      "tx_id": "FABRIC-TX-f49d3282"
+    }
+  ],
+  "ledger_mode": "FABRIC"
+}

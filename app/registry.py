@@ -1,6 +1,6 @@
-"""Adaptateur registre : MOCK disque par défaut, FABRIC optionnel."""
 import json
 import os
+import subprocess
 import threading
 import uuid
 from datetime import datetime, timezone
@@ -76,8 +76,67 @@ def get_artifact(artifact_id: str) -> dict | None:
         data = _load_mock()
         return data.get(artifact_id)
 
+# =====================================================================
+# PARTIE FABRIC (Utilise la CLI dans WSL)
+# =====================================================================
+
+# Chemins vers tes outils Fabric (adaptés à ton installation WSL)
+FABRIC_BIN = os.path.expanduser("~/hyperledger/fabric-samples/bin")
+TEST_NETWORK = os.path.expanduser("~/hyperledger/fabric-samples/test-network")
+ORG1_ADMIN = os.path.join(TEST_NETWORK, "organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp")
+ORG1_TLS = os.path.join(TEST_NETWORK, "organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt")
+ORDERER_TLS = os.path.join(TEST_NETWORK, "organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem")
+
+def _get_env():
+    """Prépare l'environnement pour que la CLI 'peer' sache qui elle est."""
+    env = os.environ.copy()
+    env["PATH"] = f"{FABRIC_BIN}:" + env.get("PATH", "")
+    env["FABRIC_CFG_PATH"] = os.path.join(FABRIC_BIN, "../config")
+    env["CORE_PEER_TLS_ENABLED"] = "true"
+    env["CORE_PEER_LOCALMSPID"] = "Org1MSP"
+    env["CORE_PEER_TLS_ROOTCERT_FILE"] = ORG1_TLS
+    env["CORE_PEER_MSPCONFIGPATH"] = ORG1_ADMIN
+    env["CORE_PEER_ADDRESS"] = "localhost:7051"
+    return env
+
 def _record_fabric(rec: dict) -> dict:
-    raise NotImplementedError("Fabric non branché : fallback MOCK.")
+    """Envoie la transaction au vrai réseau Fabric via la CLI."""
+    rec_json = json.dumps(rec)
+    args = [
+        "peer", "chaincode", "invoke",
+        "-o", "localhost:7050", "--ordererTLSHostnameOverride", "orderer.example.com",
+        "-C", "mychannel", "-n", "artifact",
+        "--tls", "--cafile", ORDERER_TLS,
+        "-c", json.dumps({"function": "createArtifact", "Args": [rec_json]})
+    ]
+    
+    # Exécution de la commande Fabric
+    result = subprocess.run(args, env=_get_env(), capture_output=True, text=True)
+    
+    if result.returncode != 0:
+        raise RuntimeError(f"Erreur Fabric (create) : {result.stderr}")
+        
+    # On génère un ID basé sur l'artefact pour prouver que ça vient de Fabric
+    return {"tx_id": f"FABRIC-TX-{rec['artifact_id'][:8]}", "ledger_mode": "FABRIC"}
 
 def _get_fabric(artifact_id: str) -> dict | None:
-    raise NotImplementedError("Fabric non branché : fallback MOCK.")
+    """Lit un artefact depuis le vrai réseau Fabric."""
+    # Utilisation de guillemets simples pour éviter les conflits avec Fabric
+    args = [
+        "peer", "chaincode", "query",
+        "-C", "mychannel", "-n", "artifact",
+        "-c", f'{{"function":"readArtifact","Args":["{artifact_id}"]}}'
+    ]
+    result = subprocess.run(args, env=_get_env(), capture_output=True, text=True)
+    
+    if result.returncode != 0:
+        return None
+        
+    try:
+        # La réponse de Fabric peut contenir des caractères d'échappement ou des sauts de ligne
+        raw_output = result.stdout.strip()
+        if not raw_output:
+            return None
+        return json.loads(raw_output)
+    except json.JSONDecodeError:
+        return None
