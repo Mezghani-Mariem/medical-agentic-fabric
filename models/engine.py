@@ -190,6 +190,10 @@ class PartitionedModel:
         self.labels = m["labels"]
         self.input_scale = float(m["input_scale"])
         self.logit_scale = float(m["logit_scale"])
+        self.temperature = 1.0
+        cal_path = part_dir / "calibration.json"
+        if cal_path.exists():
+            self.temperature = float(json.loads(cal_path.read_text(encoding="utf-8"))["temperature"])
         self.name = m["model_name"]
         self.partitions = [
             {"name": p["name"], "layers": load_layers(part_dir / p["file"])}
@@ -198,7 +202,7 @@ class PartitionedModel:
         digest = weights_digest([L for p in self.partitions for L in p["layers"]])
         if digest != m["weights_sha256"]:
             raise ValueError("Poids du modèle modifiés : empreinte différente du manifest")
-        self.version = m["model_version"]
+        self.version = m["model_version"] + ("-cal" if self.temperature != 1.0 else "")
         plan = plan or os.getenv("PARTITION_PLAN") or ",".join(p["device"] for p in m["partitions"])
         self.plan = [d.strip().lower() for d in plan.split(",")]
         if len(self.plan) != len(self.partitions) or any(d not in DEVICES for d in self.plan):
@@ -222,7 +226,7 @@ class PartitionedModel:
                 "host_ms": round(host_ms, 4),
                 "fpga_est_ms": None if est_ms is None else round(est_ms, 6),
             })
-        logits = x.astype(np.float64)[0] * self.logit_scale
+        logits = x.astype(np.float64)[0] * self.logit_scale / self.temperature
         z = logits - logits.max()
         probs = np.exp(z) / np.exp(z).sum()
         k = int(np.argmax(probs))
