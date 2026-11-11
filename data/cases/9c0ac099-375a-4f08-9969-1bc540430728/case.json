@@ -1,0 +1,85 @@
+{
+  "case_id": "9c0ac099-375a-4f08-9969-1bc540430728",
+  "prediction": {
+    "label": "abnormal",
+    "confidence": 0.9705,
+    "model_name": "ecg_mlp_int8_partitioned",
+    "model_version": "v2-int8-p3-ebe0997a-cal"
+  },
+  "validation": {
+    "status": "REVIEW_REQUIRED",
+    "reasons": [
+      "Qualité du signal insuffisante ou non confirmée : revue humaine requise.",
+      "Qualité : Signal trop court : 15 points (minimum 30)",
+      "Cohérence texte/ECG non évaluée automatiquement"
+    ]
+  },
+  "explanation": "Classe indicative du prototype : abnormal (confiance 97%). Statut de validation : REVIEW_REQUIRED. Inférence : modèle int8 en 3 partitions (P1:fpga-sim, P2:fpga-sim, P3:arm) ; FPGA simulé, pas de carte. Prototype pédagogique, non diagnostique.",
+  "artifacts": [
+    {
+      "artifact_id": "7134ed3c-c979-4afe-bb43-2f8a4e6052cf",
+      "type": "raw_ecg",
+      "sha256": "895e902702c76acf692926a700f041627c8a9666822d56d1269490047ff15ea0",
+      "parent_id": null,
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/7134ed3c-c979-4afe-bb43-2f8a4e6052cf.bin",
+      "tx_id": "MOCK-437da7f31cf04866-7134ed3c"
+    },
+    {
+      "artifact_id": "f1b54e4e-9685-41c0-8765-64ad6c2f8ecf",
+      "type": "raw_report",
+      "sha256": "ee85ddd5cfaae7cd13a8f39b6f13eddb820fa63716115afe4b7b865221f4d982",
+      "parent_id": "7134ed3c-c979-4afe-bb43-2f8a4e6052cf",
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/f1b54e4e-9685-41c0-8765-64ad6c2f8ecf.bin",
+      "tx_id": "MOCK-d921b90f3e454da6-f1b54e4e"
+    },
+    {
+      "artifact_id": "53dec210-df4e-4f8b-a4cb-05893ca3ab94",
+      "type": "processed",
+      "sha256": "8270b1485892c09003dc892af88fbeff046f95de8a9e215ddef2fac30c310d6e",
+      "parent_id": "f1b54e4e-9685-41c0-8765-64ad6c2f8ecf",
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/53dec210-df4e-4f8b-a4cb-05893ca3ab94.bin",
+      "tx_id": "MOCK-9b037037b97747ec-53dec210"
+    },
+    {
+      "artifact_id": "89b11d6d-34dd-4c87-98ca-a9c947743dfc",
+      "type": "features",
+      "sha256": "f0fc7644a4a2105913d95d3ffdc11ec3d23b773f31331543519fd5b806ca2d52",
+      "parent_id": "53dec210-df4e-4f8b-a4cb-05893ca3ab94",
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/89b11d6d-34dd-4c87-98ca-a9c947743dfc.bin",
+      "tx_id": "MOCK-541f7210a7b44fb9-89b11d6d"
+    },
+    {
+      "artifact_id": "60e34529-05ab-4da2-95cb-120e9a2102a0",
+      "type": "prediction",
+      "sha256": "f41f89e6b967f165794d643306b0c8b921dfd675608f25902470559e39400f0b",
+      "parent_id": "89b11d6d-34dd-4c87-98ca-a9c947743dfc",
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/60e34529-05ab-4da2-95cb-120e9a2102a0.bin",
+      "tx_id": "MOCK-0d8b8d26ba7e47a9-60e34529"
+    },
+    {
+      "artifact_id": "de8133a9-fc93-4c6d-b708-838ec24f2b38",
+      "type": "validation",
+      "sha256": "fcad10310ba12b078b6755a1bed457722c5c9ca4b032c93f52e3cf1dbb42e3b3",
+      "parent_id": "60e34529-05ab-4da2-95cb-120e9a2102a0",
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/de8133a9-fc93-4c6d-b708-838ec24f2b38.bin",
+      "tx_id": "MOCK-8191033777e445ae-de8133a9"
+    },
+    {
+      "artifact_id": "727c0fb4-b382-4df2-8f7f-7acdf9d62441",
+      "type": "explanation",
+      "sha256": "3c37dbf0375363e441044da87c6f1faee34445bff008e31d6781f10866b1a819",
+      "parent_id": "de8133a9-fc93-4c6d-b708-838ec24f2b38",
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/727c0fb4-b382-4df2-8f7f-7acdf9d62441.bin",
+      "tx_id": "MOCK-8a801c7dd925483a-727c0fb4"
+    },
+    {
+      "artifact_id": "3f02b471-282c-4cad-80a1-ee7068cbb1ec",
+      "type": "final",
+      "sha256": "2fce2211f6a9408720a8a3ef2ebd75cb12636e5fc95baee6c99f07b506a208d5",
+      "parent_id": "727c0fb4-b382-4df2-8f7f-7acdf9d62441",
+      "storage_ref": "data/cases/9c0ac099-375a-4f08-9969-1bc540430728/3f02b471-282c-4cad-80a1-ee7068cbb1ec.bin",
+      "tx_id": "MOCK-24a4e3cf4692445e-3f02b471"
+    }
+  ],
+  "ledger_mode": "MOCK"
+}

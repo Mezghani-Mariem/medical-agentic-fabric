@@ -1,0 +1,1 @@
+{"case_id":"7a8d7d37-b130-4280-8fc4-5be8909bfa51","confidence":0.9705,"label":"abnormal","reasons":["Qualité du signal insuffisante ou non confirmée : revue humaine requise.","Qualité : Signal trop court : 15 points (minimum 30)","Cohérence texte/ECG non évaluée automatiquement"],"review_required":true,"validation_status":"REVIEW_REQUIRED"}

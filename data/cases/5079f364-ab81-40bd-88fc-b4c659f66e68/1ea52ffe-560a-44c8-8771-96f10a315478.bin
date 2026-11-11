@@ -1,0 +1,1 @@
+{"analyzed_at":"2026-11-10T22:03:15.486305+00:00","case_id":"5079f364-ab81-40bd-88fc-b4c659f66e68","confidence":0.9705,"input_artifact_id":"b863c1ea-6643-47ba-9611-a8c5ff556d81","label":"abnormal","model_name":"ecg_mlp_int8_partitioned","model_version":"v2-int8-p3-ebe0997a-cal"}

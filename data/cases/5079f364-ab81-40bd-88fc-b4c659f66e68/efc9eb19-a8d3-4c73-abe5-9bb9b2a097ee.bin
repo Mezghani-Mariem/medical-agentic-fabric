@@ -1,0 +1,1 @@
+{"case_id":"5079f364-ab81-40bd-88fc-b4c659f66e68","source":"template","text":"Classe indicative du prototype : abnormal (confiance 97%). Statut de validation : REJECTED. Inférence : modèle int8 en 3 partitions (P1:fpga-sim, P2:fpga-sim, P3:arm) ; FPGA simulé, pas de carte. Prototype pédagogique, non diagnostique."}
