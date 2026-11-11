@@ -1,0 +1,41 @@
+{
+  "model_name": "ecg_mlp_int8_partitioned",
+  "model_version": "v2-int8-p3-ebe0997a",
+  "labels": [
+    "normal",
+    "abnormal"
+  ],
+  "segment_len": 64,
+  "input_scale": 0.042447543676103476,
+  "logit_scale": 0.000251536475070395,
+  "weights_sha256": "ebe0997a1ee0fe4c602e3cd2e5a620b30710353b7ae73d6fde7968962de4fa0a",
+  "partitions": [
+    {
+      "name": "p1",
+      "file": "p1.npz",
+      "device": "fpga",
+      "in_dim": 64,
+      "out_dim": 32,
+      "macs": 2048,
+      "bytes_int8": 2176
+    },
+    {
+      "name": "p2",
+      "file": "p2.npz",
+      "device": "fpga",
+      "in_dim": 32,
+      "out_dim": 16,
+      "macs": 512,
+      "bytes_int8": 576
+    },
+    {
+      "name": "p3",
+      "file": "p3.npz",
+      "device": "arm",
+      "in_dim": 16,
+      "out_dim": 2,
+      "macs": 32,
+      "bytes_int8": 40
+    }
+  ]
+}

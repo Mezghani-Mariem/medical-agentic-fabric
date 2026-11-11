@@ -1,0 +1,7 @@
+{
+  "name": "artifact",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": { "node": ">=18" },
+  "dependencies": { "fabric-contract-api": "^2.5.0" }
+}
